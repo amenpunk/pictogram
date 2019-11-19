@@ -82,11 +82,10 @@
                             <div class="col-md-6">
                         
                         <div class="form-group row">
-                            @if (Auth::user()->image)
-                               <img class="avatar" widht=240 height=250 src="{{ url('/user/avatar/'.Auth::user()->image) }}"> 
-                            @endif
+                          @include('includes.avatar')
                         </div>
-                        <input id="image_path" type="file" class="form-control @error('image_path') is-invalid @enderror" name="image_path"> 
+                        
+                      <input id="image_path" type="file" class="form-control @error('image_path') is-invalid @enderror" name="image_path"> 
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
