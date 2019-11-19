@@ -12,15 +12,6 @@
 */
 Use App\Usuario;
 
-Route::get('/', function () {
-    $image = Usuario::all();
-
-    foreach ($image as $img){
-        var_dump($img);
-        $img->name;
-    }
-});
-
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
@@ -28,3 +19,5 @@ Route::get('/', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/Configuracion', 'UserController@config')->name('config');
+Route::POST('/user/update', 'UserController@update')->name('user.update');
