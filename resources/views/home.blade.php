@@ -2,6 +2,10 @@
 <link href="{{ asset('css/main.css') }}" rel="stylesheet">
 
 <style>
+.btn-comentario{
+    margin: 20px;
+    margin-top:0px;
+}
 
 form .avatar{
     height: 75%;
@@ -53,6 +57,7 @@ form .avatar{
 }                            
 .pub_image .descripcion{
     padding:20px;
+    padding-bottom:0px;
 }
 </style>
 
@@ -72,10 +77,12 @@ form .avatar{
                     </div>
                     @endif
                     <div class="data-user">
-                        <strong>{{ $img->user->name. ' '.  $img->user->surname  }}</strong>
-                        <span class="second">
-                            {{' | @' .$img->user->nick }}
-                        </span>
+                        <a href="{{ route('image.detail', ['id' => $img->id] )}}">
+                            <strong>{{ $img->user->name. ' '.  $img->user->surname  }}</strong>
+                            <span class="second">
+                                {{' | @' .$img->user->nick }}
+                            </span>
+                        </a>
                     </div>
                 </div>
 
@@ -83,19 +90,22 @@ form .avatar{
                     <div class="img-container">
                         <img class="" src="{{ route('image.file', [ 'filename' => $img->image_path]) }}">
                     </div>
+                    <div class="likes">
+                    </div>
                     <div class="descripcion">
                         <span class="second">{{ '@' .$img->user->nick .': '}}</span>
                         <p>{{$img->descripcion }}</p>
                     </div>
-                    <div class="likes">
-                   
-                    </div>
+                    <a class="btn btn-warning btn-comentario" href="">
+                        Comentarios {{ count($img->comments) }}
+                    </a>
                </div>
             </div>
 
             @endforeach
             <!--card model--> 
-
+            <div class="clearfix"></div>
+            {{ $images->links()}}
         </div>
     </div>
 </div>

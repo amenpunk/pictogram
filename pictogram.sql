@@ -27,13 +27,13 @@ create table imagen(
 create table comentario(
     id int IDENTITY(1,1) not null,
     user_id int,
-    imgen_id int,
+    image_id int,
     content varchar(250),
     created_at date,
     updated_at date,
     CONSTRAINT PK_CO PRIMARY KEY (id),
     CONSTRAINT FK_USC FOREIGN KEY (user_id) REFERENCES users(id),
-    CONSTRAINT FK_IMC FOREIGN KEY (imgen_id) REFERENCES imagen(id),
+    CONSTRAINT FK_IMC FOREIGN KEY (image_id) REFERENCES imagen(id),
 )
 
 create table likes(

@@ -8,6 +8,7 @@ class Image extends Model
 {
     //
     protected $table = 'imagen';
+    
     public function comments(){
         return $this->hasMany('App\Comentario');
     }
