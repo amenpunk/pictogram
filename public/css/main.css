@@ -4,7 +4,7 @@ form .avatar{
     width: 25%;
 }
 
-.navbar .container-avatar{
+.navbar .container-avatar , .pub_image .container-avatar{
     width: 35px;
     height: 35px;
     border-radius:900px;
@@ -12,8 +12,9 @@ form .avatar{
     margin-left: 20px;
 }
 
-.navbar .container-avatar img{
+.navbar .container-avatar img, .pub_image .container-avatar img {
     height: 100px;
 }
+
 
 

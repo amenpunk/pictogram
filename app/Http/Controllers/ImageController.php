@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\Image;
@@ -30,6 +31,7 @@ class ImageController extends Controller
         
         $image = new Image();
         $image->image_path = null;
+        $image->user_id = $user->id;
         $image->descripcion = $descripcion; 
         if ($image_path){
            $image_path_name = time().$image_path->getClientOriginalName();
@@ -41,4 +43,10 @@ class ImageController extends Controller
             'message' => 'la foto ha sido gurdada exitosamente'
         ]);
     }
+
+    public function getImage($filename){
+        $file = Storage::disk('images')->get($filename);
+        return new Response($file, 200);
+    }
+
 }
