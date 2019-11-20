@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\File;
 
 class UserController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
     //
     public function getImage($filename){
         $file = Storage::disk('users')->get($filename);
