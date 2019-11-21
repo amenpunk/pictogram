@@ -77,23 +77,24 @@ form .avatar{
                     </div>
                     @endif
                     <div class="data-user">
-                        <a href="{{ route('image.detail', ['id' => $img->id] )}}">
                             <strong>{{ $img->user->name. ' '.  $img->user->surname  }}</strong>
                             <span class="second">
                                 {{' | @' .$img->user->nick }}
                             </span>
-                        </a>
                     </div>
                 </div>
 
                 <div class="card-body">
                     <div class="img-container">
-                        <img class="" src="{{ route('image.file', [ 'filename' => $img->image_path]) }}">
+                        <a href="{{ route('image.detail', ['id' => $img->id] )}}">
+                            <img class="" src="{{ route('image.file', [ 'filename' => $img->image_path]) }}">
+                        </a>
                     </div>
                     <div class="likes">
                     </div>
                     <div class="descripcion">
                         <span class="second">{{ '@' .$img->user->nick .': '}}</span>
+                        <span class="second">{{ \FormatTime::LongTimeFilter( $img->created_at )}}</span>
                         <p>{{$img->descripcion }}</p>
                     </div>
                     <a class="btn btn-warning btn-comentario" href="">
