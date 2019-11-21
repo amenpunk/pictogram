@@ -39,10 +39,10 @@ create table comentario(
 create table likes(
     id int IDENTITY(1,1) not null,
     user_id int,
-    imagen_id int,
+    image_id int,
     created_at datetime,
     updated_at datetime,
     CONSTRAINT PK_LIKES PRIMARY KEY (id), 
     CONSTRAINT FK_LIKESUER FOREIGN KEY (user_id) REFERENCES users(id),
-    CONSTRAINT FK_IMAGELIK FOREIGN KEY (imagen_id) REFERENCES imagen(id)
+    CONSTRAINT FK_IMAGELIK FOREIGN KEY (image_id) REFERENCES imagen(id)
 )
