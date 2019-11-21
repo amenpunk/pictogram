@@ -1,13 +1,21 @@
 @extends('layouts.app')
 <link href="{{ asset('css/main.css') }}" rel="stylesheet">
 
+<style>
+
+.pub_image_detail .comments{
+    padding:30px;
+}
+
+</style>
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
 
             <!--card model--> 
-            <div class="card pub_image">
+            <div class="card pub_image pub_image_detail">
                 <div class="card-header">
                     @if($img->user->image)
                     <div class="container-avatar">
@@ -34,9 +42,32 @@
                         <span class="second">{{ '@' .$img->user->nick .': '}}</span>
                         <p>{{$img->descripcion }}</p>
                     </div>
-                    <a class="btn btn-warning btn-comentario" href="">
-                        Comentarios {{ count($img->comments) }}
-                    </a>
+                    <div class="clearfix"></div>
+                    <div class="comments">
+                        <h2 class="comentarios">Comentarios ({{ count($img->comments) }})</h2>
+                        <hr>
+                            @foreach($img->comments as $cmt)
+                                <div class="comment">
+                                    <span class="second">{{ '@' .$cmt->user->nick .': '}}</span>
+                                    <span class="second">{{ \FormatTime::LongTimeFilter( $cmt->created_at )}}</span>
+                                    <p>{{$cmt->content }}</p>
+                                </div>
+                            @endforeach
+                        <hr>
+                        <form method="POST" action="{{ route("comment.save")}}">
+                            @csrf
+                            <input type="hidden" name="image_id" value="{{$img->id}}"/>
+                            <p>
+                                <textarea class="form-control"  name="content" id="content"></textarea>
+                                @if($errors->has('content'))
+                                    <span class="alert alert-danger" role="alert">
+                                        <strong>{{$errors->first('content')}}</strong>
+                                    </span>
+                                 @endif
+                            </p>
+                            <input class="btn btn-success" type="submit" value="Guardar">
+                        </form>
+                    </div>
                </div>
             </div>
 

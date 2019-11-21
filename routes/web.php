@@ -26,3 +26,4 @@ Route::get('/image/subir', 'ImageController@create')->name('image.create');
 Route::POST('/image/save', 'ImageController@save')->name('image.save');
 Route::get('/imagen/file/{filename}', 'ImageController@getImage')->name('image.file');
 Route::get('/imagen/{id}', 'ImageController@detail')->name('image.detail');
+Route::POST('/comment/save', 'CommentController@save')->name('comment.save');

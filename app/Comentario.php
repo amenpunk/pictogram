@@ -15,6 +15,6 @@ class Comentario extends Model
     }
 
     public function image(){
-        return $this->belongsTo('App\Imagen', 'imagen_id');
+        return $this->belongsTo('App\Image', 'imagen_id');
     }
 }
