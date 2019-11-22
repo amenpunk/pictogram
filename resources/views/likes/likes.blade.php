@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 <link href="{{ asset('css/main.css') }}" rel="stylesheet">
 
@@ -24,14 +25,14 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-
-            <!--card model--> 
-            @foreach($images as $img)
-                @include('includes.image',['img'=> $img]);
+            <h1> Mis images favoritas</h1>
+            <hr>
+            @foreach($likes as $img)
+                @include('includes.image',['img'=> $img->image]);
             @endforeach
-            <!--card model--> 
+
             <div class="clearfix"></div>
-            {{ $images->links()}}
+            {{ $likes->links()}}
         </div>
     </div>
 </div>

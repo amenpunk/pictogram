@@ -7,6 +7,24 @@
     padding:30px;
 }
 
+.me_gusta{
+    padding-left:35px;
+    font-size:35px;
+    display:block;
+    padding-top:15px;
+}
+.me_gusta:hover{
+    font-size:45;
+}
+
+.btn-dislike{
+    color:red;
+}
+.btn-like{
+    color:black;
+}
+
+
 </style>
 
 @section('content')
@@ -42,6 +60,19 @@
                         <span class="second">{{ '@' .$img->user->nick .': '}}</span>
                         <p>{{$img->descripcion }}</p>
                     </div>
+
+                    <?php $user_like = false; ?>
+                    @foreach($img->likes as $likes)
+                        @if($likes->user->id == Auth::user()->id)
+                            <?php $user_like = true; ?>
+                        @endif
+                    @endforeach
+                    @if($user_like)
+                        <a ><i data-id="{{ $img->id }}" class="btn-dislike fas fa-heart me_gusta"></i></a>
+                    @else
+                        <a ><i data-id="{{ $img->id }}" class="btn-like fas fa-heart me_gusta"></i></a>
+                    @endif
+
                     <div class="clearfix"></div>
                     <div class="comments">
                         <h2 class="comentarios">Comentarios ({{ count($img->comments) }})</h2>
