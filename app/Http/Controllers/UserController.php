@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use App\User;
 
 class UserController extends Controller
 {
@@ -54,6 +55,13 @@ class UserController extends Controller
        $user->update();
        return redirect()->route('config')->with(['message' => 'Usuario Actualizado Correctamente']);
       
+    }
+
+    public function profile($id){
+        $user = User::find($id);
+        return view('User.profile', [
+            'user' => $user
+        ]);
     }
 
 }

@@ -1,20 +1,52 @@
+
 @extends('layouts.app')
 <link href="{{ asset('css/main.css') }}" rel="stylesheet">
 
+<style>
+#pp{
+    border-radius:900px;
+    height: 200px;
+    overflow: hidden;
+    margin: 15px;
+    width: 200px;
+    float:left;
+}
+#pp img{
+    height:100%;
+    width:100%;
+}
+.gray{
+    color:gray;
+}
+</style>
+
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+    <div class="justify-content-center">
+
+            <div class="row">
+                <div class="col-3">
+                    @if($user->image)
+                        <div id="pp">
+                            <img id="gg" class="avatar" src="{{ url('/user/avatar/'.$user->image) }}"> 
+                        </div>
+                    @endif
+                </div>
+                
+                <div class="col-4">
+                    <h1>{{ $user->name .''.$user->surname }} </h1>
+                    <h2 class="gray">{{ '@'.$user->nick}} </h2>
+                </div>
+            </div>
+            <hr>
+
+    </div>
 
             <!--card model--> 
-            @foreach($images as $img)
+            @foreach($user->images as $img)
                 @include('includes.image',['img'=> $img]);
             @endforeach
             <!--card model--> 
-            <div class="clearfix"></div>
-            {{ $images->links()}}
-        </div>
-    </div>
 </div>
 @endsection
 

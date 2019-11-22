@@ -2,14 +2,16 @@
     <div class="card-header">
         @if($img->user->image)
             <div class="container-avatar">
-                <img class="avatar" src="{{ url('/user/avatar/'.$img->user->image) }}"> 
+                    <img class="avatar" src="{{ url('/user/avatar/'.$img->user->image) }}"> 
             </div>
         @endif
         <div class="data-user">
-            <strong>{{ $img->user->name. ' '.  $img->user->surname  }}</strong>
-            <span class="second">
-                {{' | @' .$img->user->nick }}
-            </span>
+            <a href="{{ route('profile', ['id' => $img->user->id] )}}" >
+                <strong>{{ $img->user->name. ' '.  $img->user->surname  }}</strong>
+                <span class="second">
+                    {{' | @' .$img->user->nick }}
+                </span>
+            </a>
             <?php $user_like = false; ?>
             @foreach($img->likes as $likes)
                 @if($likes->user->id == Auth::user()->id)
@@ -26,7 +28,7 @@
 
     <div class="card-body">
         <div class="img-container">
-            <a href="{{ route('image.detail', ['id' => $img->id] )}}">
+            <a >
                 <img class="" src="{{ route('image.file', [ 'filename' => $img->image_path]) }}">
             </a>
         </div>
@@ -37,7 +39,7 @@
             <span class="second">{{ \FormatTime::LongTimeFilter( $img->created_at )}}</span>
             <p>{{$img->descripcion }}</p>
         </div>
-        <a class="btn btn-warning btn-comentario" href="">
+        <a href="{{ route('image.detail', ['id' => $img->id] )}}" class="btn btn-warning btn-comentario" href="">
             Comentarios {{ count($img->comments) }}
         </a>
     </div>
