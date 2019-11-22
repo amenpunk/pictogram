@@ -4,17 +4,18 @@
 <style>
     .me_gusta{
         float:right;
-        font-size:10px;
+        font-size:13px;
         display:block;
         padding-top:15px;
     }
     .me_gusta:hover{
+       font-size:15;
+    }
+
+    .btn-dislike{
         color:red;
     }
-    a:link{
-        color:black;
-    }
-    a:visited{
+    .btn-like{
         color:black;
     }
 </style>
@@ -38,7 +39,17 @@
                             <span class="second">
                                 {{' | @' .$img->user->nick }}
                             </span>
-                            <a href=""><i class="fas fa-heart me_gusta"></i></i></a>
+                                <?php $user_like = false; ?>
+                                @foreach($img->likes as $likes)
+                                    @if($likes->user->id == Auth::user()->id)
+                                        <?php $user_like = true; ?>
+                                    @endif
+                                @endforeach
+                                @if($user_like)
+                                    <a ><i data-id="{{ $img->id }}" class="btn-dislike fas fa-heart me_gusta"></i></a>
+                                @else
+                                    <a ><i data-id="{{ $img->id }}" class="btn-like fas fa-heart me_gusta"></i></a>
+                                @endif
                     </div>
                 </div>
 
@@ -129,3 +140,5 @@ form .avatar{
     padding-bottom:0px;
 }
 </style>
+
+
