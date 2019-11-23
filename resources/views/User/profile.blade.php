@@ -126,6 +126,7 @@ form .avatar{
     padding:20px;
     padding-bottom:0px;
 }
+
 </style>
 
 

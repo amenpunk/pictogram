@@ -47,6 +47,10 @@
                         </li>
 
                         <li class="nav-item" >
+                          <a href="{{ route('user.index') }}" class="nav-link">Gente</a>
+                        </li>
+
+                        <li class="nav-item" >
                           <a href="{{ route('home') }}" class="nav-link"> Inicio</a>
                         </li>
                         <li class="nav-item" >

@@ -10,8 +10,20 @@ use App\User;
 
 class UserController extends Controller
 {
+
     public function __construct(){
         $this->middleware('auth');
+    }
+
+    public function index($search = null){
+
+        if (!empty($search)){
+            $users = User::where('nick', 'LIKE', '%'.$search.'%')->orWhere('surname', 'LIKE','%'.$search.'%' )->orWhere('name', 'LIKE','%'.$search.'%' )->orderBy('id','desc')->paginate(5);
+        }
+        else{
+            $users = User::orderBy('id','desc')->paginate(5);
+        }
+        return view('User.index', ['users' => $users]);
     }
     //
     public function getImage($filename){
@@ -63,5 +75,6 @@ class UserController extends Controller
             'user' => $user
         ]);
     }
+
 
 }
