@@ -23,6 +23,10 @@
 .btn-like{
     color:black;
 }
+.action{
+    padding:15px;
+    padding-left:35px;
+}
 
 
 </style>
@@ -56,10 +60,10 @@
                     </div>
                     <div class="likes">
                     </div>
-                    <div class="descripcion">
-                        <span class="second">{{ '@' .$img->user->nick .': '}}</span>
-                        <p>{{$img->descripcion }}</p>
-                    </div>
+                        <div class="descripcion">
+                            <span class="second">{{ '@' .$img->user->nick .': '}}</span>
+                            <p>{{$img->descripcion }}</p>
+                        </div>
 
                     <?php $user_like = false; ?>
                     @foreach($img->likes as $likes)
@@ -71,6 +75,13 @@
                         <a ><i data-id="{{ $img->id }}" class="btn-dislike fas fa-heart me_gusta"></i></a>
                     @else
                         <a ><i data-id="{{ $img->id }}" class="btn-like fas fa-heart me_gusta"></i></a>
+                    @endif
+
+                    @if(Auth::user() && Auth::user()->id == $img->user->id)
+                        <div class="action">
+                            <a class="btn btn-sm btn-warning" >Modificar</a>
+                            <a class="btn btn-sm btn-danger" href="{{route('image.delete', ['id' => $img->id])}}" >Borrar</a>
+                        </div>
                     @endif
 
                     <div class="clearfix"></div>
