@@ -34,3 +34,5 @@ Route::get('/likes', 'LikeController@likes')->name('likes');
 Route::get('/perfil/{id}', 'UserController@profile')->name('profile');
 
 Route::get('/imagen/delete/{id}', 'ImageController@delete')->name('image.delete');
+Route::get('/imagen/edit/{id}', 'ImageController@edit')->name('image.edit');
+Route::POST('/image/update', 'ImageController@update')->name('image.update');

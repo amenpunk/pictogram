@@ -79,8 +79,37 @@
 
                     @if(Auth::user() && Auth::user()->id == $img->user->id)
                         <div class="action">
-                            <a class="btn btn-sm btn-warning" >Modificar</a>
-                            <a class="btn btn-sm btn-danger" href="{{route('image.delete', ['id' => $img->id])}}" >Borrar</a>
+                            <a href="{{ route('image.edit', ['id' => $img->id]) }}"class="btn btn-sm btn-warning" >Modificar</a>
+                            
+                            <!-- Button to Open the Modal -->
+                            <button type="button" class=" btn btn-sm btn-danger" data-toggle="modal" data-target="#myModal">Eliminar</button>
+
+                            <!-- The Modal -->
+                            <div class="modal" id="myModal">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Eliminar imagen</h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+                                            Quieres eliminar la imagen defitivamente?
+                                        </div>
+
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer">
+                                            <a class="btn btn-danger" href="{{route('image.delete', ['id' => $img->id])}}" >Confirmar</a>
+                                            <button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     @endif
 
