@@ -28,7 +28,7 @@
 
     <div class="card-body">
         <div class="img-container">
-            <a >
+            <a href="{{ route('image.detail', ['id' => $img->id] )}}" >
                 <img class="" src="{{ route('image.file', [ 'filename' => $img->image_path]) }}">
             </a>
         </div>
@@ -39,9 +39,6 @@
             <span class="second">{{ \FormatTime::LongTimeFilter( $img->created_at )}}</span>
             <p>{{$img->descripcion }}</p>
         </div>
-        <a href="{{ route('image.detail', ['id' => $img->id] )}}" class="btn btn-warning btn-comentario" href="">
-            Comentarios {{ count($img->comments) }}
-        </a>
     </div>
 </div>
 
